@@ -1,7 +1,25 @@
 {
-  "name": "ufo-search",
+  "name": "metalpedia-search",
   "version": "1.0.0",
-  "description": "Search service for UFO sightings",
+  "description": "Search service for metal lyrics, songs, albums, et al.",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "jest": {
+    "testMatch": [
+      "**/spec/**/*-spec.js"
+    ],
+    "setupFilesAfterEnv": [
+      "./spec/spec-helper.js"
+    ]
+  },
   "author": "Guy Royse <guy@guyroyse.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "redis": "^3.0.2",
+    "uuid": "^8.3.0"
+  },
+  "devDependencies": {
+    "jest": "^26.4.0"
+  }
 }

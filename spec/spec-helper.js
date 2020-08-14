@@ -1,0 +1,1 @@
+global.invert = b => !b
