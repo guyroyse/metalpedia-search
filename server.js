@@ -1,16 +1,18 @@
-const uuid = require('uuid')
-
-const RedisStream = require('./lib/stream')
-
-const streamKey = 'metalpedia:event:stream'
-const groupName = 'metalpedia_search'
-const consumerName = uuid.v4()
+const EventStream = require('./lib/event-stream')
+const EventHandler = require('./lib/event-handler')
 
 async function main() {
-  let stream = new RedisStream()
-  await stream.createGroup({ streamKey, groupName })
-  let response = await stream.readGroup({ streamKey, groupName, consumerName, count: 2 })
-  console.log(response)
+  let eventStream = new EventStream()
+  await eventStream.createGroup()
+
+  let eventHandler = new EventHandler(eventStream)
+
+  try {
+    eventHandler.start()
+  } catch (error) {
+    console.log(error)
+    throw error
+  }
 }
 
 main()
